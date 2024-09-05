@@ -70,6 +70,20 @@
             <li>O sistema confirma a compra.</li>
             <li>O café escolhido é entregue ao usuário no lugar de escolha.</li>
         </ol>
+
+        Caminho Alternativo:
+        <ol>
+            <li>Usuário realiza o login.</li>
+            <li>Usuário seleciona o café que deseja.</li>
+            <li>Usuário seleciona o local em que deseja receber o café.</li>
+            <li>Usuário confirma o pedido.</li>
+            <li>A plataforma procura por outro usuário que esteja disponível para realizar o serviço.</li>
+            <li>A plataforma não encontra nenhum usuário disponível para a entrega.</li>
+            <li>A plataforma notifica o usuário sobre a indisponibilidade e disponibiliza a opção de cancelar o pedido ou tentar novamente.</li>
+            <li>Caso o usuário tente encontrar outro entregador novamente, retorna-se ao passo 5, podendo seguir para o fluxo principal ou permanecer no caminho alternativo.</li>
+            <li>Caso o usuário cancele o pedido, a operação é encerrada.</li>
+
+        </ol>
     </li>
 
     <li><strong>Nome: Verificar produtos disponíveis nas lojas</strong><br>
@@ -81,6 +95,18 @@
             <li>Usuário filtra os produtos por categoria ou realiza uma busca por nome.</li>
             <li>O sistema indica em quais pontos de venda do prédio os produtos estão disponíveis.</li>
         </ol>
+
+        Caminho alternativo:
+        <ol>
+            <li>Usuário realiza o login.</li>
+            <li>Usuário seleciona a aba de produtos disponíveis.</li>
+            <li>Usuário filtra os produtos por categoria ou busca.</li>
+            <li>Usuário percebe que há o produto procurado se encontra em uma categoria não compatível com o produto.</li>
+            <li>Usuário acessa a área de reportar problemas no aplicativo.</li>
+            <li>Usuário reporta o problema.</li>
+            <li>O sistema notifica que o reporte foi recebido com sucesso.</li>
+
+        </ol>
     </li>
 
     <li><strong>Nome: Usuário realiza entrega</strong><br>
@@ -88,10 +114,22 @@
         <ol>
             <li>Usuário realiza login.</li>
             <li>Usuário analisa as opções de entrega disponível.</li>
+            <li>O sistema verifica os serviços disponíveis.</li>
             <li>Usuário seleciona a entrega que deseja.</li>
             <li>O pareamento com o cliente a receber o serviço é confirmado.</li>
             <li>O café é entregue no local estabelecido.</li>
             <li>O entregador recebe sua recompensa em moedas virtuais referente ao serviço prestado.</li>
+        </ol>
+
+        Caminho alternativo:
+        <ol>
+            <li>Usuário realiza login.</li>
+            <li>Usuário analisa as opções de entrega disponível.</li>
+            <li>O sistema verifica os serviços disponíveis.</li>
+            <li>O sistema informa que não há opções de serviços disponíveis.</li>
+            <li>A plataforma notifica o entregador sobre a baixa demanda de usuários e disponibiliza a opção de esperar por possíveis clientes ou cancelar a procura.</li>
+            <li>Caso o entregador tente encontrar outro usuário novamente, retorna-se ao passo 3, podendo seguir para o fluxo principal ou permanecer no caminho alternativo.</li>
+            <li>Caso o usuário cancele a procura, a operação é encerrada.</li>
         </ol>
     </li>
 </ul>

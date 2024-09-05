@@ -1,1 +1,100 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento</title>
+</head>
+<body>
+
+<h2>Introdução</h2>
+
+<p>No dia 29 de agosto de 2024, entrevistamos o StakeHolder Alexandre Marinho Salles, estudante de administração da FGV EBAPE, para a obtenção dos requisitos para a aplicação de máquinas de café na Fundação Getúlio Vargas.</p>
+
+<h2>Requisitos funcionais</h2>
+
+<ul>
+    <li><strong>RF 02-</strong> Fornecer comprovante digital para solucionar eventuais problemas de pagamento de maneira prática. Realizar todos os processos de pagamento internamente na própria aplicação, sem utilizar apps terceiros.</li>
+    <li><strong>RF 04-</strong> Emitir um email para o usuário contendo recibo após a efetuação da compra.</li>
+    <li><strong>RF 07-</strong> Implementar um sistema de avaliação no qual o usuário pode avaliar o produto ou serviço através de comentários e uma escala de avaliação variando de 0 a 5 estrelas.</li>
+    <li><strong>RF 18-</strong> Notificar o usuário a respeito promoções, serviços e eventuais modificações nas máquinas.</li>
+    <li><strong>RF 19-</strong> Possibilitar o usuário configurar as notificações de acordo com suas preferências.</li>
+    <li><strong>RF 22-</strong> Cada usuário pode adicionar foto e outras informações pessoais no seu perfil. Cada usuário possui um histórico de compras (informação protegida) que pode ser compartilhada.</li>
+    <li><strong>RF 23-</strong> Cada usuário pode seguir outros usuários da plataforma, podendo visualizar o histórico de compras uns dos outros.</li>
+    <li><strong>RF 24-</strong> Os usuários podem trocar mensagens privadas entre si.</li>
+    <li><strong>RF 27-</strong> A plataforma possui um sistema de gamificação.</li>
+    <li><strong>RF 28-</strong> A plataforma possui um sistema de conquistas.</li>
+    <li><strong>RF 29-</strong> O sistema de gamificação deve possuir níveis.</li>
+    <li><strong>RF 32-</strong> É possível personalizar o aplicativo conforme o estilo do usuário.</li>
+    <li><strong>RF 33-</strong> O sistema deve possuir um mecanismo para reportar problemas com produtos ou serviços.</li>
+    <li><strong>SRF 07-</strong> É possível moderar comentários após os mesmos serem publicados.</li>
+    <li>A forma de cadastro é livre (a FGV não fornece).</li>
+    <li>A plataforma deve possuir um mecanismo de moeda virtual.</li>
+    <li>A plataforma deve possuir integração com outras redes sociais.</li>
+    <li>É permitida a criação de perfis privados, de modo que as informações de um usuário fiquem restritas aos seus seguidores.</li>
+</ul>
+
+<h2>Requisitos não-funcionais</h2>
+
+<ul>
+    <li><strong>SRF 03-</strong> O processamento e o pagamento de produtos e serviços devem ser realizados de maneira segura.</li>
+    <li>O sistema esperado deve possuir a possibilidade de ser integrado com outros sistemas da instituição, porém não integrado com a SRA.</li>
+    <li>As informações de todos os usuários devem ser protegidas.</li>
+    <li>Espera-se alguma medida de proteção contra ataques cibernéticos e fraudes.</li>
+    <li>O sistema deve possuir interface fácil e intuitiva aos usuários.</li>
+    <li>O sistema possui uma velocidade padrão de desempenho.</li>
+    <li>O aplicativo estará disponível para dispositivos móveis.</li>
+    <li>Disponibilidade: O sistema deve estar disponível e operacional 24 horas por dia, 7 dias por semana (24/7), garantindo que os usuários possam acessá-lo a qualquer momento, sem interrupções.</li>
+</ul>
+
+<h2>Histórias de Usuário</h2>
+
+<ul>
+    <li>Como um usuário da faculdade, Eu quero saber quais máquinas de café estão funcionando, Para que eu possa escolher a mais próxima ou conveniente para utilizar.</li>
+    <li>Como um usuário da faculdade, Eu quero saber quais produtos estão disponíveis nas lojas espalhadas, Para que eu possa encontrar o que preciso de forma rápida e eficiente.</li>
+    <li>Como um usuário da faculdade, Eu quero saber o que meus amigos estão comprando, Para que eu possa descobrir novas recomendações e tendências entre o meu círculo social.</li>
+</ul>
+
+<h2>Casos de Uso</h2>
+
+<ul>
+    <li><strong>Nome: Solicitar recebimento de café</strong><br>
+        Fluxo principal:
+        <ol>
+            <li>Usuário realiza o login.</li>
+            <li>Usuário seleciona o café que deseja.</li>
+            <li>Usuário seleciona o local em que deseja receber o café.</li>
+            <li>Usuário confirma o pedido.</li>
+            <li>A plataforma procura por outro usuário que esteja disponível para realizar o serviço.</li>
+            <li>Após encontrar o entregador, o sistema processa o pagamento.</li>
+            <li>O sistema confirma a compra.</li>
+            <li>O café escolhido é entregue ao usuário no lugar de escolha.</li>
+        </ol>
+    </li>
+
+    <li><strong>Nome: Verificar produtos disponíveis nas lojas</strong><br>
+        Fluxo principal:
+        <ol>
+            <li>Usuário realiza o login.</li>
+            <li>Usuário seleciona a aba de produtos disponíveis.</li>
+            <li>Usuário filtra os produtos por categoria ou busca.</li>
+            <li>Usuário filtra os produtos por categoria ou realiza uma busca por nome.</li>
+            <li>O sistema indica em quais pontos de venda do prédio os produtos estão disponíveis.</li>
+        </ol>
+    </li>
+
+    <li><strong>Nome: Usuário realiza entrega</strong><br>
+        Fluxo principal:
+        <ol>
+            <li>Usuário realiza login.</li>
+            <li>Usuário analisa as opções de entrega disponível.</li>
+            <li>Usuário seleciona a entrega que deseja.</li>
+            <li>O pareamento com o cliente a receber o serviço é confirmado.</li>
+            <li>O café é entregue no local estabelecido.</li>
+            <li>O entregador recebe sua recompensa em moedas virtuais referente ao serviço prestado.</li>
+        </ol>
+    </li>
+</ul>
+
+</body>
+</html>

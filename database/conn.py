@@ -1,4 +1,9 @@
 import psycopg2
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+db_password = os.getenv("DB_PASSWORD")
 
 def connect():
     try:
@@ -6,7 +11,7 @@ def connect():
         connection = psycopg2.connect(
             dbname="vmdb",
             user="postgres",
-            password="123",
+            password=db_password,
             host="localhost",
             port="5432"
         )

@@ -7,9 +7,9 @@ def get_vm_list(cursor):
         ROUND(avg(r.rating), 2) as average_rating
     FROM 
         vendingmachine vm
-    JOIN
+    LEFT JOIN
         vm_review vmr ON vmr.vending_machine_id = vm.vending_machine_id
-    JOIN
+    LEFT JOIN
         review r ON vmr.review_id = r.review_id
     GROUP BY
         vm.vending_machine_id

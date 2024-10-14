@@ -1,4 +1,5 @@
 from queries14 import get_vm_list, get_avg_rating, get_reviews_from_vm, get_products_from_vm
+from queries10 import get_product_list, get_product_stock
 
 def display_vm_list(cursor):
     """
@@ -116,3 +117,44 @@ def vmsearch(cursor):
     print("\n")
     
     display_vm_details(cursor, vm_id)
+
+def display_all_products_stock(cursor):
+    """
+    Display the stock information for all products across all vending machines.
+    Args:
+        cursor: The database cursor to execute queries.
+    Returns:
+        None: This function prints the stock information for all products across all vending machines.
+    """
+    products = get_product_list(cursor)
+    
+    print("Stock Information for All Products:")
+    print(f"{'ID':<5} {'Name':<25} {'Brand':<15} {'Price':<10} {'Description':<50} {'Stock':<5}")
+    print("-" * 120)
+    
+    for product in products:
+        product_id, name, brand, price, description, stock = product
+        print(f"{product_id:<5} {name:<25} {brand:<15} R${price:<10.2f} {description:<50} {stock:<5}")
+    
+    print("\n")
+
+def display_product_stock(cursor, product_id):
+    """
+    Display the stock information for a specific product across all vending machines.
+    Args:
+        cursor: The database cursor to execute queries.
+        product_id (int): The ID of the product.
+    Returns:
+        None: This function prints the stock information for the specified product across all vending machines.
+    """
+    stocks = get_product_stock(cursor, product_id)
+    
+    print(f"Stock Information for Product {product_id}:")
+    print(f"{'VM ID':<5} {'Location':<15} {'Status':<10} {'Stock':<5}")
+    print("-" * 40)
+    
+    for stock in stocks:
+        vm_id, location, status, stock_level = stock
+        print(f"{vm_id:<5} {location:<15} {status:<10} {stock_level:<5}")
+    
+    print("\n")

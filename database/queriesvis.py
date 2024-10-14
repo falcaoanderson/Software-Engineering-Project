@@ -1,4 +1,4 @@
-from queries import get_vm_list, get_avg_rating, get_reviews_from_vm, get_products_from_vm
+from queries14 import get_vm_list, get_avg_rating, get_reviews_from_vm, get_products_from_vm
 
 def display_vm_list(cursor):
     """

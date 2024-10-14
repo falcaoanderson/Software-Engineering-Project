@@ -3,7 +3,7 @@ SELECT
     vm.vending_machine_id,
     vm.location,
     vm.status,
-    avg(r.rating) as average_rating
+    ROUND(avg(r.rating), 2) as average_rating
 FROM 
     vendingmachine vm
 JOIN
@@ -34,7 +34,7 @@ WHERE
 
 -- Calcula a media de avaliacao de uma maquina especificada:
 SELECT
-    avg(r.rating) as average_rating
+    ROUND(avg(r.rating), 2) as average_rating
 FROM 
     vm_review as vmr
 JOIN

@@ -53,6 +53,23 @@ class TestDatabaseConnection(unittest.TestCase):
         # Verificando se o cursor e a conexão foram fechados
         mock_cursor.close.assert_called_once()
         mock_connection.close.assert_called_once()
-        
+    
+    @patch('psycopg2.connect')
+    def test_execute_query_success(self, mock_connect):
+        # Mockando o objeto de conexão e cursor
+        mock_connection = MagicMock()
+        mock_cursor = MagicMock()
+        mock_connect.return_value = mock_connection
+        mock_connection.cursor.return_value = mock_cursor
+
+        # Criando a instância da classe e conectando
+        db = DatabaseConnection('test_db', 'user', 'password', 'localhost', '5432')
+        db.connect()
+        db.execute_query("SELECT * FROM test_table")
+
+        # Verificando se o método execute do cursor foi chamado com os parâmetros corretos
+        mock_cursor.execute.assert_called_once_with("SELECT * FROM test_table", None)
+        mock_connection.commit.assert_called_once()
+
 if __name__ == '__main__':
     unittest.main()

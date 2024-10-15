@@ -46,12 +46,52 @@ class TestProductData(unittest.TestCase):
     def test_get_product_list_without_connection(self, mock_connect):
         # Criando a instância da classe sem conectar
         db = ProductData('test_db', 'user', 'password', 'localhost', '5432')
-        
+
         # Chamando get_product_list sem conectar, deve retornar uma lista vazia
         result = db.get_product_list()
 
         # Verificando se o resultado é uma lista vazia
         self.assertEqual(result, [])
+    
+    @patch('psycopg2.connect')
+    def test_get_product_stock_success(self, mock_connect):
+        # Mockando o objeto de conexão e cursor
+        mock_connection = MagicMock()
+        mock_cursor = MagicMock()
+
+        # Dados simulados que serão retornados pelo fetchall
+        mock_cursor.fetchall.return_value = [
+            {'vm_id': 1, 'location': 'Location A', 'status': 'Active', 'stock': 30},
+            {'vm_id': 2, 'location': 'Location B', 'status': 'Inactive', 'stock': 20}
+        ]
+        mock_connect.return_value = mock_connection
+        mock_connection.cursor.return_value = mock_cursor
+
+        # Criando a instância de ProductData e conectando
+        db = ProductData('test_db', 'user', 'password', 'localhost', '5432')
+        db.connect()
+        stock_info = db.get_product_stock(1)
+
+        # Verificando se a query foi executada corretamente com o parâmetro passado
+        mock_cursor.execute.assert_called_once_with("""
+        SELECT
+            vm.vending_machine_id as vm_id,
+            vm.location,
+            vm.status,
+            vmp.vm_product_stock as stock
+        FROM
+            vm_products vmp
+        JOIN
+            vendingmachine vm on vm.vending_machine_id = vmp.vending_machine_id
+        WHERE
+            vmp.product_id = %s;
+        """, (1,))
+        
+        # Verificando se os resultados retornados são os esperados
+        self.assertEqual(stock_info, [
+            {'vm_id': 1, 'location': 'Location A', 'status': 'Active', 'stock': 30},
+            {'vm_id': 2, 'location': 'Location B', 'status': 'Inactive', 'stock': 20}
+        ])
 
 if __name__ == "__main__":
     unittest.main()

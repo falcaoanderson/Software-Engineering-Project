@@ -86,12 +86,23 @@ class TestProductData(unittest.TestCase):
         WHERE
             vmp.product_id = %s;
         """, (1,))
-        
+
         # Verificando se os resultados retornados são os esperados
         self.assertEqual(stock_info, [
             {'vm_id': 1, 'location': 'Location A', 'status': 'Active', 'stock': 30},
             {'vm_id': 2, 'location': 'Location B', 'status': 'Inactive', 'stock': 20}
         ])
+
+    @patch('psycopg2.connect')
+    def test_get_product_stock_without_connection(self, mock_connect):
+        # Criando a instância da classe sem conectar
+        db = ProductData('test_db', 'user', 'password', 'localhost', '5432')
+        
+        # Chamando get_product_stock sem conectar, deve retornar uma lista vazia
+        result = db.get_product_stock(1)
+
+        # Verificando se o resultado é uma lista vazia
+        self.assertEqual(result, [])
 
 if __name__ == "__main__":
     unittest.main()

@@ -23,6 +23,19 @@ class TestDatabaseConnection(unittest.TestCase):
         # Verificando se o cursor foi criado
         mock_connection.cursor.assert_called_once()
         self.assertEqual(db.cursor, mock_cursor)
+   
+    @patch('psycopg2.connect')
+    def test_connect_failure(self, mock_connect):
+        # Simulando uma falha na conexão
+        mock_connect.side_effect = Exception("Connection failed")
+
+        # Criando a instância da classe
+        db = DatabaseConnection('test_db', 'user', 'password', 'localhost', '5432')
+        db.connect()
+
+        # Verificando se a conexão e o cursor permanecem como None após a falha
+        self.assertIsNone(db.connection)
+        self.assertIsNone(db.cursor)
 
 if __name__ == '__main__':
     unittest.main()

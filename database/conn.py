@@ -87,6 +87,7 @@ class DatabaseConnection:
             # print("SQL query executed successfully.")
         except Exception as e:
             print("Error executing the SQL query:\n", e)
+            raise
 
     def fetch_results(self):
         """

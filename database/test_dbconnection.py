@@ -100,6 +100,16 @@ class TestDatabaseConnection(unittest.TestCase):
         mock_cursor.fetchall.assert_called_once()
         # Verificando se os resultados retornados são os esperados
         self.assertEqual(results, [('row1',), ('row2',)])
+    
+    @patch('psycopg2.connect')
+    def test_fetch_results_without_connection(self, mock_connect):
+        # Criando a instância da classe sem conectar
+        db = DatabaseConnection('test_db', 'user', 'password', 'localhost', '5432')
+        with self.assertRaises(Exception) as context:
+            db.fetch_results()
+
+        # Verificando se a exceção foi levantada corretamente
+        self.assertTrue("Connection is not established" in str(context.exception))
 
 if __name__ == '__main__':
     unittest.main()

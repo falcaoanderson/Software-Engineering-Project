@@ -106,6 +106,7 @@ class DatabaseConnection:
             return self.cursor.fetchall()
         except Exception as e:
             print("Error fetching results from the database:\n", e) 
+            raise
 
 # Exemplo de uso
 if __name__ == "__main__":

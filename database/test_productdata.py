@@ -9,7 +9,7 @@ class TestProductData(unittest.TestCase):
         # Mockando o objeto de conexão e cursor
         mock_connection = MagicMock()
         mock_cursor = MagicMock()
-        
+
         # Dados simulados que serão retornados pelo fetchall
         mock_cursor.fetchall.return_value = [
             (1, 'Product A', 'Brand A', 10.99, 'Description A', 100),
@@ -41,6 +41,17 @@ class TestProductData(unittest.TestCase):
             (1, 'Product A', 'Brand A', 10.99, 'Description A', 100),
             (2, 'Product B', 'Brand B', 20.99, 'Description B', 50)
         ])
+    
+    @patch('psycopg2.connect')
+    def test_get_product_list_without_connection(self, mock_connect):
+        # Criando a instância da classe sem conectar
+        db = ProductData('test_db', 'user', 'password', 'localhost', '5432')
+        
+        # Chamando get_product_list sem conectar, deve retornar uma lista vazia
+        result = db.get_product_list()
+
+        # Verificando se o resultado é uma lista vazia
+        self.assertEqual(result, [])
 
 if __name__ == "__main__":
     unittest.main()

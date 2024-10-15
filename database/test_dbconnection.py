@@ -37,5 +37,22 @@ class TestDatabaseConnection(unittest.TestCase):
         self.assertIsNone(db.connection)
         self.assertIsNone(db.cursor)
 
+    @patch('psycopg2.connect')
+    def test_shutdown(self, mock_connect):
+        # Mockando o objeto de conexão e cursor
+        mock_connection = MagicMock()
+        mock_cursor = MagicMock()
+        mock_connect.return_value = mock_connection
+        mock_connection.cursor.return_value = mock_cursor
+
+        # Criando a instância da classe e conectando
+        db = DatabaseConnection('test_db', 'user', 'password', 'localhost', '5432')
+        db.connect()
+        db.shutdown()
+
+        # Verificando se o cursor e a conexão foram fechados
+        mock_cursor.close.assert_called_once()
+        mock_connection.close.assert_called_once()
+        
 if __name__ == '__main__':
     unittest.main()

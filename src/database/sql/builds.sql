@@ -26,6 +26,21 @@ CREATE TABLE Users
   password_hash VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE Roles
+(
+  role_id SERIAL PRIMARY KEY,
+  role_name VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE User_Roles
+(
+  user_id INT NOT NULL,
+  role_id INT NOT NULL,
+  PRIMARY KEY (user_id, role_id),
+  FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE,
+  FOREIGN KEY (role_id) REFERENCES Roles(role_id) ON DELETE CASCADE
+);
+
 CREATE TABLE Review
 (
   review_id SERIAL PRIMARY KEY,

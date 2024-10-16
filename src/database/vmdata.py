@@ -1,6 +1,9 @@
 from src.database.conn import DatabaseConnection
 
 class VendingMachineData(DatabaseConnection):
+    """
+    A subclass of DatabaseConnection to handle Vending Machine related queries.
+    """
     def get_vm_list(self):
         """
         Retrieves a list of vending machines along with their information and average user ratings.

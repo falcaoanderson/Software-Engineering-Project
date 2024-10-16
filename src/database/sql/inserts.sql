@@ -6,7 +6,24 @@ INSERT INTO Users (username, password_hash) VALUES
 ('Darth', 'hash_darth_456'), -- USER 2
 ('Chewbacca', 'hash_chewbacca_789'), -- USER 3
 ('Leia', 'hash_leia_123'), -- USER 4
-('Han', 'hash_han_456'); -- USER 5
+('Han', 'hash_han_456'), -- USER 5
+('Yoda', 'hash_yoda_789'); -- ADMIN 6
+
+-- Inserindo dados na tabela Roles
+INSERT INTO Roles (role_name) VALUES
+('user'), -- 1
+('admin'), -- 2
+('moderator'), -- 3
+('seller'); -- 4
+
+-- Inserindo dados na tabela User_Roles
+INSERT INTO User_Roles (user_id, role_id) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 2);
 
 -----------------------------------------------------------------------------------------
 
@@ -25,7 +42,7 @@ INSERT INTO Product (product_name, product_brand, product_price, product_descrip
 ('Sanduiche 195g', 'Sadwich', 7.00, 'Sanduiche de presunto e queijo', 10); -- PROD 11
 
 -- Inserindo dados na tabela VendingMachine
-INSERT INTO VendingMachine (location, status) VALUES
+INSERT INTO VendingMachine (location, status) VALUES'
 ('8 andar', 'online'), -- VM 1
 ('4 andar', 'online'), -- VM 2
 ('9 andar', 'offline'), -- VM 3

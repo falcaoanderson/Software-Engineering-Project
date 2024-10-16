@@ -1,5 +1,5 @@
-from productdata import ProductData
-from vmdata import VendingMachineData
+from src.database.productdata import ProductData
+from src.database.vmdata import VendingMachineData
 
 class PrintData(ProductData, VendingMachineData):
     def display_vm_list(self):

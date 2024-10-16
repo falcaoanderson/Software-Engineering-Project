@@ -1,5 +1,5 @@
-from queries14 import get_vm_list, get_avg_rating, get_reviews_from_vm, get_products_from_vm
-from queries10 import get_product_list, get_product_stock
+from src.database.legado.queries14 import get_vm_list, get_avg_rating, get_reviews_from_vm, get_products_from_vm
+from src.database.legado.queries10 import get_product_list, get_product_stock
 
 def display_vm_list(cursor):
     """

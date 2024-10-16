@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from productdata import ProductData
+from src.database.productdata import ProductData
 
 class TestProductData(unittest.TestCase):
 

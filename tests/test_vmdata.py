@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from vmdata import VendingMachineData
+from src.database.vmdata import VendingMachineData
 
 class TestVendingMachineData(unittest.TestCase):
 

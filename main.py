@@ -1,4 +1,4 @@
-from printdata import PrintData
+from src.app.printdata import PrintData
 import os 
 from dotenv import load_dotenv
 

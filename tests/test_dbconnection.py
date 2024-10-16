@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from conn import DatabaseConnection
+from src.database.conn import DatabaseConnection
 
 class TestDatabaseConnection(unittest.TestCase):
     

@@ -1,4 +1,4 @@
-from conn import DatabaseConnection
+from src.database.conn import DatabaseConnection
 
 class ProductData(DatabaseConnection):
     """

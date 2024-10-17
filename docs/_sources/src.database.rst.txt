@@ -1,0 +1,37 @@
+src.database package
+====================
+
+Submodules
+----------
+
+src.database.conn module
+------------------------
+
+.. automodule:: src.database.conn
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+src.database.productdata module
+-------------------------------
+
+.. automodule:: src.database.productdata
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+src.database.vmdata module
+--------------------------
+
+.. automodule:: src.database.vmdata
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: src.database
+   :members:
+   :undoc-members:
+   :show-inheritance:

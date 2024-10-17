@@ -1,0 +1,29 @@
+src.app package
+===============
+
+Submodules
+----------
+
+src.app.interface module
+------------------------
+
+.. automodule:: src.app.interface
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+src.app.printdata module
+------------------------
+
+.. automodule:: src.app.printdata
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: src.app
+   :members:
+   :undoc-members:
+   :show-inheritance:

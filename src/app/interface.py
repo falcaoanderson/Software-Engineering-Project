@@ -6,6 +6,23 @@ class Interface:
         self.print_data = print_data
 
     def searchMenu(self):
+        """
+        Displays a menu for searching and viewing details of vending machines.
+        The method runs in a loop, allowing the user to search for vending machines
+        and view their details. The user can choose to search again or exit the menu.
+        Workflow:
+        1. Display a list of vending machines.
+        2. Prompt the user to enter a vending machine ID to view its details.
+        3. If the user enters -1, exit the menu.
+        4. If the user enters an invalid ID, prompt again.
+        5. After viewing details, ask the user if they want to search again.
+        User Inputs:
+        - Vending Machine ID: Numeric ID of the vending machine to view details.
+        - Search Again Option: 'y' to search again, 'n' to exit.
+        Raises:
+        - ValueError: If the user enters a non-numeric vending machine ID.
+        """
+        
         running = True
         it = 0
 
@@ -48,6 +65,24 @@ class Interface:
             it += 1
     
     def stockMenu(self):
+        """
+        Displays the stock menu and allows the user to search for product details.
+        The method runs in a loop, prompting the user to enter a product ID to view its details.
+        After each search, the user is asked if they want to search again. The loop continues
+        until the user chooses to exit.
+        Workflow:
+        1. Display all products in stock.
+        2. Prompt the user to enter a product ID to view details.
+        3. If the user enters -1, exit the menu.
+        4. If the user enters a valid product ID, display the product details.
+        5. Ask the user if they want to search again. If 'n', exit the menu; if 'y', continue.
+        Note:
+        - The screen is cleared before displaying the stock.
+        - Input is validated to ensure a numeric product ID is entered.
+        Raises:
+            ValueError: If the input product ID is not a valid integer.
+        """
+
         running = True
         it = 0
 

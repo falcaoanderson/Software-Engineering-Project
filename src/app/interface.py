@@ -36,6 +36,7 @@ class Interface:
                     vm_id = int(vm_id_input)
 
                     if vm_id == -1:
+                        running = False
                         break
                     else:
                         print("")
@@ -45,6 +46,49 @@ class Interface:
                     print("Invalid ID, please enter a valid numeric ID.")
 
             it += 1
+    
+    def stockMenu(self):
+        running = True
+        it = 0
+
+        while running:
+            if it > 0:
+                while True:
+                    op = input("Do you want to search again? [y/n]: ").strip().lower()
+
+                    if op == "n":
+                        running = False
+                        break
+                    elif op == "y":
+                        break
+                    else:
+                        print("Invalid option, please enter 'y' for yes or 'n' for no.")
+            
+            if not running:
+                break
+            
+            clean_screen()
+
+            self.print_data.display_all_products_stock()
+
+            while True:
+                product_id_input = input("Enter Product ID to view details: [-1 to go back]: ").strip()
+
+                try:
+                    product_id = int(product_id_input)
+
+                    if product_id == -1:
+                        running = False
+                        break
+                    else:
+                        print("")
+                        self.print_data.display_product_stock(product_id)
+                        break
+                except ValueError:
+                    print("Invalid ID, please enter a valid numeric ID.")
+
+            it += 1
+
 
 if __name__ == "__main__":
     print("Running Interface")
@@ -57,6 +101,7 @@ if __name__ == "__main__":
     print_data.connect()
 
     interface = Interface(print_data)
-    interface.searchMenu()
+    # interface.searchMenu()
+    interface.stockMenu()
 
     print_data.shutdown()

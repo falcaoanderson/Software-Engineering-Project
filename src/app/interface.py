@@ -1,7 +1,12 @@
 from src.app.printdata import PrintData
 from src.utils.console_utils import clean_screen
+from src.database.productdata import ProductData
+from src.database.vmdata import VendingMachineData
+from src.database.conn import DatabaseConnection
+import streamlit as st
+import os
 
-class Interface:
+class Interface(ProductData, VendingMachineData, DatabaseConnection):
     def __init__(self, print_data):
         self.print_data = print_data
 
@@ -28,39 +33,50 @@ class Interface:
 
         while running:
             if it > 0:
-                while True:
-                    op = input("Do you want to search again? [y/n]: ").strip().lower()
+                # Pergunta se o usuário quer realizar uma nova busca
+                op = st.selectbox("Deseja realizar uma nova busca?", ["Sim", "Não"])
+                
+                if op == "Não":
+                    running = False
+                    break
 
-                    if op == "n":
-                        running = False
-                        break
-                    elif op == "y":
-                        break
-                    else:
-                        print("Invalid option, please enter 'y' for yes or 'n' for no.")
-            
             if not running:
                 break
             
-            clean_screen()
+            # Limpar a tela (não é necessário no Streamlit, o layout vai sendo atualizado)
+            
+            # Obter a lista de máquinas de vendas
+            db = VendingMachineData("vmdb", os.getenv("DB_USER"), os.getenv("DB_PASSWORD"), "localhost", "5432")
+            db.connect()
+            vm_list = db.get_vm_list()
+            vm_ids = [vm[0] for vm in vm_list]
+            
+            # Exibir a lista de máquinas de vendas como tabela no Streamlit
+            st.write("Máquinas de Vendas Disponíveis:")
+            st.table(vm_list)
 
-            self.print_data.display_vm_list()
-
+            # Segundo loop para garantir que o ID da máquina de vendas seja válido
             while True:
-                vm_id_input = input("Enter Vending Machine ID to view details: [-1 to go back]: ").strip()
+                # Solicitar ao usuário para escolher a ID de uma máquina de vendas
+                vm_id_input = st.text_input("Digite o ID da Máquina de Vendas para ver detalhes: [-1 para voltar]")
+                
+                if vm_id_input:
+                    try:
+                        vm_id = int(vm_id_input)
+                        
+                        if vm_id == -1:
+                            running = False
+                            break
+                        elif vm_id in vm_ids:
+                            # Exibir detalhes da máquina de vendas selecionada
+                            st.write(f"Detalhes da Máquina {vm_id}:")
+                            self.print_data.display_vm_details(vm_id)
+                            break  # Sai do segundo loop após exibir os detalhes
+                        else:
+                            st.warning("ID da máquina inválido, tente novamente.")
 
-                try:
-                    vm_id = int(vm_id_input)
-
-                    if vm_id == -1:
-                        running = False
-                        break
-                    else:
-                        print("")
-                        self.print_data.display_vm_details(vm_id)
-                        break
-                except ValueError:
-                    print("Invalid ID, please enter a valid numeric ID.")
+                    except ValueError:
+                        st.warning("ID inválido, por favor, insira um número válido.")
 
             it += 1
     

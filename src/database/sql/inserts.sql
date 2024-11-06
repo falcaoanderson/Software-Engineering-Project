@@ -42,7 +42,7 @@ INSERT INTO Product (product_name, product_brand, product_price, product_descrip
 ('Sanduiche 195g', 'Sadwich', 7.00, 'Sanduiche de presunto e queijo', 10); -- PROD 11
 
 -- Inserindo dados na tabela VendingMachine
-INSERT INTO VendingMachine (location, status) VALUES'
+INSERT INTO VendingMachine (location, status) VALUES
 ('8 andar', 'online'), -- VM 1
 ('4 andar', 'online'), -- VM 2
 ('9 andar', 'offline'), -- VM 3
